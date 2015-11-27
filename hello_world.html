@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-30TsuJU2uI6S1mJypRwSFiZJp8Q7R8k&signed_in=true&callback=initMap">
+    </script>
+    <script>
+      var marker;
+      var myLatLng = {lat: 49.270565, lng: -123.135680};
+      var theirLatLng = {lat: -25.363, lng: 131.044};
+      var map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 5,
+        center: myLatLng
+        });
+
+        marker = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          position: myLatLng
+        });
+        marker .addListener('click', toggleBounce);
+      }
+
+        function toggleBounce() {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          }
+          else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+
+          var theirMarker = new google.maps.Marker({
+            position: theirLatLng,
+            map: map,
+            title: 'Hello World!'
+          });
+        }
+
+
+
+
+
+    </script>
+
+  </body>
+</html>
+
